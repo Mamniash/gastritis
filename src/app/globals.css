@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #934a3a;
+  --background: #f7f7f6;
+  --accent: #538847;
+  --text: #13130f;
+  --secondary: #aa9352;
+  --gray: #92958e;
+}
+
+body {
+  color: var(--text);
+  background-color: var(--background);
+  font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+.primary-color {
+  color: var(--primary);
+}
+
+.primary-bg {
+  background-color: var(--primary);
+}
+
+.accent-color {
+  color: var(--accent);
+}
+
+.accent-bg {
+  background-color: var(--accent);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.section {
+  padding: 4rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 6rem 2rem;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+em {
+  font-style: italic;
+  color: var(--primary);
+}
+
+.testimonial-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 3rem 0;
+}
