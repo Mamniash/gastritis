@@ -1,17 +1,60 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Form, Input, Button } from 'antd';
-import Image from 'next/image';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Form, Input, Button, notification, Spin } from "antd";
+import Image from "next/image";
+import { sendToTelegram } from "@/helpers/telegramApi"; // Предположим, что эта функция уже существует
 
 const OrderSection = () => {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string>("");
+  const [messageType, setMessageType] = useState<"success" | "error" | "">("");
 
-  const handleSubmit = (values: { email: string }) => {
-    console.log('Submitted email:', values.email);
-    // Здесь будет логика отправки формы
-    form.resetFields();
+  // Определяем местоположение пользователя
+  const getLocation = async (): Promise<string> => {
+    try {
+      const res = await fetch("http://ip-api.com/json/");
+      const data = await res.json();
+      return data.city || "Неизвестный город";
+    } catch (error) {
+      return "Ошибка определения локации";
+    }
+  };
+
+  // Проверка, прошло ли больше минуты с последней отправки
+  const canSendEmail = (): boolean => {
+    const lastSentTime = localStorage.getItem("lastSent");
+    const now = Date.now();
+    if (lastSentTime && now - Number(lastSentTime) < 60 * 1000) {
+      return false; // Если меньше минуты, не отправляем
+    }
+    localStorage.setItem("lastSent", now.toString());
+    return true;
+  };
+
+  const handleSubmit = async (values: { email: string }) => {
+    if (!canSendEmail()) {
+      setMessageType("error");
+      setMessage("❌ Вы можете отправить email не более 1 раза в минуту");
+      return;
+    }
+
+    setLoading(true);
+    const location = await getLocation();
+
+    const isSent = await sendToTelegram(values.email, location);
+    setLoading(false);
+
+    if (isSent) {
+      setMessageType("success");
+      setMessage(`✅ Подписка успешна! Почта: ${values.email}`);
+      form.resetFields();
+    } else {
+      setMessageType("error");
+      setMessage("❌ Ошибка подписки. Попробуйте снова.");
+    }
   };
 
   return (
@@ -35,16 +78,30 @@ const OrderSection = () => {
                 вкусными блюдами, доставленными прямо к вашей двери.
               </p>
 
-              <Form form={form} onFinish={handleSubmit} layout="vertical" className="mb-6">
+              <Form
+                form={form}
+                onFinish={handleSubmit}
+                layout="vertical"
+                className="mb-6"
+              >
                 <Form.Item
                   name="email"
                   className="mb-4"
                   rules={[
-                    { required: true, message: 'Пожалуйста, введите ваш email' },
-                    { type: 'email', message: 'Пожалуйста, введите корректный email' }
+                    {
+                      required: true,
+                      message: "Пожалуйста, введите ваш email",
+                    },
+                    {
+                      type: "email",
+                      message: "Пожалуйста, введите корректный email",
+                    },
                   ]}
                 >
-                  <Input placeholder="Введите ваш email" className="rounded-full py-2 px-4" />
+                  <Input
+                    placeholder="Введите ваш email"
+                    className="rounded-full py-2 px-4"
+                  />
                 </Form.Item>
 
                 <Button
@@ -53,15 +110,32 @@ const OrderSection = () => {
                   size="large"
                   shape="round"
                   className="primary-bg w-full md:w-auto"
+                  disabled={loading}
                 >
-                  Подписаться
+                  {loading ? <Spin /> : "Подписаться"}
                 </Button>
               </Form>
 
+              {/* Анимация сообщения об успехе/ошибке */}
+              {message && (
+                <motion.div
+                  className={`p-4 mt-4 rounded-lg ${
+                    messageType === "success" ? "bg-green-500" : "bg-red-500"
+                  } text-white`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {message}
+                </motion.div>
+              )}
+
               <p className="text-sm text-gray-600">
-                Просто выберите свой план питания, выберите любимые ингредиенты и
-                разместите заказ. Мы позаботимся обо всем остальном, гарантируя доставку
-                свежих ингредиентов к вашей двери, готовых для вас приготовить.
+                Просто выберите свой план питания, выберите любимые ингредиенты
+                и разместите заказ. Мы позаботимся обо всем остальном,
+                гарантируя доставку свежих ингредиентов к вашей двери, готовых
+                для вас приготовить.
               </p>
             </motion.div>
 
@@ -76,7 +150,7 @@ const OrderSection = () => {
                 src="https://ext.same-assets.com/551949812/20905340.webp"
                 alt="Шеф-повар готовит свежие ингредиенты"
                 fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             </motion.div>
           </div>
