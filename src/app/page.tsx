@@ -8,19 +8,25 @@ import DeliverySection from '@/components/DeliverySection';
 import OrderSection from '@/components/OrderSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import Footer from '@/components/Footer';
+import FeaturesSection from '@/components/FeaturesSection'
+import PricingSection from '@/components/PricingSection'
+import FAQSection from '@/components/FAQSection'
 
 export default function Home() {
-  return (
-    <main>
-      <Header />
-      <HeroSection />
-      <MissionSection />
-      <HowItWorksSection />
-      <MealPlansSection />
-      <DeliverySection />
-      <OrderSection />
-      <TestimonialsSection />
-      <Footer />
-    </main>
-  );
+	return (
+		<main>
+			<Header />
+			<HeroSection />
+			<MissionSection />
+			<HowItWorksSection />
+			<MealPlansSection />
+			<FeaturesSection />
+			{/* <DeliverySection /> */}
+			<PricingSection />
+			<FAQSection />
+			<OrderSection />
+			{/* <TestimonialsSection /> */}
+			<Footer />
+		</main>
+	)
 }
