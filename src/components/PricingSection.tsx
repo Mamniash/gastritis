@@ -3,6 +3,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { DollarSign } from 'lucide-react'
+import { Button } from 'antd'
+import Link from 'next/link'
+
 
 const pricingPlans = [
 	{
@@ -79,9 +82,11 @@ const PricingSection = () => {
 									</li>
 								))}
 							</ul>
-							<button className='btn-primary w-full py-3 rounded-lg'>
-								Выбрать тариф
-							</button>
+							<Link href='#order'>
+								<Button className='btn-primary w-full py-3 rounded-lg'>
+									Выбрать тариф
+								</Button>
+							</Link>
 						</motion.div>
 					))}
 				</div>
