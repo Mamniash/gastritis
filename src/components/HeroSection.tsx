@@ -1,67 +1,22 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
-import { Button, Input, Form, notification, Spin } from "antd";
-import { motion } from "framer-motion";
-import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import Image from "next/image";
-import { sendToTelegram } from "@/helpers/telegramApi";
+import React from 'react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import SubscriptionForm from '@/components/SubscriptionForm'
 
 const HeroSection = () => {
-  const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<string>("");
-  const [messageType, setMessageType] = useState<"success" | "error" | "">("");
+	const handleSuccess = (email: string) => {
+		console.log(`Успешная подписка! Почта: ${email}`)
+	}
 
-  // Определяем местоположение пользователя
-  const getLocation = async (): Promise<string> => {
-    try {
-      const res = await fetch("http://ip-api.com/json/");
-      const data = await res.json();
-      return data.city || "Неизвестный город";
-    } catch (error) {
-      return "Ошибка определения локации";
-    }
-  };
+	const handleError = (message: string) => {
+		console.log(`Ошибка: ${message}`)
+	}
 
-  // Проверка, прошло ли больше минуты с последней отправки
-  const canSendEmail = (): boolean => {
-    const lastSentTime = localStorage.getItem("lastSent");
-    const now = Date.now();
-    if (lastSentTime && now - Number(lastSentTime) < 60 * 1000) {
-      return false; // Если меньше минуты, не отправляем
-    }
-    localStorage.setItem("lastSent", now.toString());
-    return true;
-  };
-
-  const handleSubmit = async (values: { email: string }) => {
-    if (!canSendEmail()) {
-      setMessageType("error");
-      setMessage("❌ Вы можете отправить email не более 1 раза в минуту");
-      return;
-    }
-
-    setLoading(true);
-    const location = await getLocation();
-
-    const isSent = await sendToTelegram(values.email, location);
-    setLoading(false);
-
-    if (isSent) {
-      setMessageType("success");
-      setMessage(`✅ Подписка успешна! Почта: ${values.email}`);
-      form.resetFields();
-    } else {
-      setMessageType("error");
-      setMessage("❌ Ошибка подписки. Попробуйте снова.");
-    }
-  };
-
-  return (
+	return (
 		<section className='relative overflow-hidden scroll-mt-28 ' id='head'>
 			<div className='container mx-auto px-4 py-12 md:py-16 flex flex-col md:flex-row items-center'>
-				{/* Левая часть (Изображение) */}
 				<motion.div
 					initial={{ opacity: 0, x: -50 }}
 					animate={{ opacity: 1, x: 0 }}
@@ -77,7 +32,6 @@ const HeroSection = () => {
 					/>
 				</motion.div>
 
-				{/* Правая часть (Форма и текст) */}
 				<motion.div
 					initial={{ opacity: 0, x: 50 }}
 					animate={{ opacity: 1, x: 0 }}
@@ -94,63 +48,17 @@ const HeroSection = () => {
 						предпочтений, разбиваем блюда на ингредиенты и сравниваем цены
 						во всех магазинах. Вам остается лишь получить продукты прямо к
 						двери и наслаждаться вкусной, разнообразной и сбалансированной
-						едой.
+						едой
 					</p>
 
-					<Form
-						form={form}
-						onFinish={handleSubmit}
-						layout='inline'
-						className='flex flex-col sm:flex-row gap-3 mb-4'
-					>
-						<Form.Item
-							name='email'
-							rules={[
-								{ required: true, message: 'Введите ваш email' },
-								{ type: 'email', message: 'Введите корректный email' }
-							]}
-							className='mb-0 w-full sm:w-auto'
-							style={{ flex: 1 }}
-						>
-							<Input
-								placeholder='Введите ваш email'
-								className='rounded-full px-4 py-2'
-							/>
-						</Form.Item>
-
-						<Button
-							type='primary'
-							htmlType='submit'
-							shape='round'
-							size='large'
-							className='primary-bg'
-							disabled={loading}
-							style={{ width: '250px' }} // фиксированная ширина
-						>
-							{loading ? <Spin /> : 'Подписаться'}
-						</Button>
-					</Form>
-
-					{/* Анимация сообщения об успехе/ошибке */}
-					{message && (
-						<motion.div
-							className={`p-4 mt-4 rounded-lg ${
-								messageType === 'success'
-									? 'bg-green-500'
-									: 'bg-red-500'
-							} text-white`}
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							exit={{ opacity: 0 }}
-							transition={{ duration: 0.5 }}
-						>
-							{message}
-						</motion.div>
-					)}
+					<SubscriptionForm
+						onSuccess={handleSuccess}
+						onError={handleError}
+					/>
 				</motion.div>
 			</div>
 		</section>
-  )
-};
+	)
+}
 
-export default HeroSection;
+export default HeroSection

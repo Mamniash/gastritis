@@ -3,7 +3,7 @@ export const sendToTelegram = async (email: string, location: string) => {
   const chatId = "-1002271508122";
   const threadId = 267; // ID темы "Бот ответы на лендинг"
 
-  const message = `📩 Новая подписка!\n✉️ Email: ${email}\n📍 Город: ${location}`;
+  const message = `📩 Новая подписка!\n✉️ Tel: ${email}\n📍 Город: ${location}`
 
   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 

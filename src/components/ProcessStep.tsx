@@ -45,9 +45,9 @@ const ProcessStep = ({
 				styles={{ body: { padding: '1.5rem' } }}
 			>
 				<h5 className='text-xl font-bold mb-4'>{title}</h5>
-				<p className='text-gray-700 mb-6'>{description}</p>
+				<p className='text-gray-700 mb-6 text-lg'>{description}</p>
 				<Link href='#order'>
-					<Button type='primary' size='large' shape='round'>
+					<Button type='primary' size='middle' shape='round'>
 						Узнать больше
 					</Button>
 				</Link>

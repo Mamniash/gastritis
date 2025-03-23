@@ -1,63 +1,23 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Form, Input, Button, notification, Spin } from "antd";
-import Image from "next/image";
-import { sendToTelegram } from "@/helpers/telegramApi"; // Предположим, что эта функция уже существует
+import React from 'react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import SubscriptionForm from '@/components/SubscriptionForm'
+import useIsMobile from '@/helpers/useIsMobile' // Импортируем хук
 
 const OrderSection = () => {
-  const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<string>("");
-  const [messageType, setMessageType] = useState<"success" | "error" | "">("");
+	const isMobile = useIsMobile() // Используем хук
 
-  // Определяем местоположение пользователя
-  const getLocation = async (): Promise<string> => {
-    try {
-      const res = await fetch("http://ip-api.com/json/");
-      const data = await res.json();
-      return data.city || "Неизвестный город";
-    } catch (error) {
-      return "Ошибка определения локации";
-    }
-  };
+	const handleSuccess = (email: string) => {
+		console.log(`Успешная подписка! Почта: ${email}`)
+	}
 
-  // Проверка, прошло ли больше минуты с последней отправки
-  const canSendEmail = (): boolean => {
-    const lastSentTime = localStorage.getItem("lastSent");
-    const now = Date.now();
-    if (lastSentTime && now - Number(lastSentTime) < 60 * 1000) {
-      return false; // Если меньше минуты, не отправляем
-    }
-    localStorage.setItem("lastSent", now.toString());
-    return true;
-  };
+	const handleError = (message: string) => {
+		console.log(`Ошибка: ${message}`)
+	}
 
-  const handleSubmit = async (values: { email: string }) => {
-    if (!canSendEmail()) {
-      setMessageType("error");
-      setMessage("❌ Вы можете отправить email не более 1 раза в минуту");
-      return;
-    }
-
-    setLoading(true);
-    const location = await getLocation();
-
-    const isSent = await sendToTelegram(values.email, location);
-    setLoading(false);
-
-    if (isSent) {
-      setMessageType("success");
-      setMessage(`✅ Подписка успешна! Почта: ${values.email}`);
-      form.resetFields();
-    } else {
-      setMessageType("error");
-      setMessage("❌ Ошибка подписки. Попробуйте снова.");
-    }
-  };
-
-  return (
+	return (
 		<section className='py-16 bg-gray-100 scroll-mt-16 ' id='order'>
 			<div className='container mx-auto px-4'>
 				<div className='bg-white rounded-xl overflow-hidden shadow-lg'>
@@ -79,67 +39,25 @@ const OrderSection = () => {
 								2 недели!
 							</p>
 
-							<Form
-								form={form}
-								onFinish={handleSubmit}
-								layout='vertical'
-								className='mb-6'
-							>
-								<Form.Item
-									name='email'
-									className='mb-4'
-									rules={[
-										{
-											required: true,
-											message: 'Пожалуйста, введите ваш email'
-										},
-										{
-											type: 'email',
-											message: 'Пожалуйста, введите корректный email'
-										}
-									]}
-								>
-									<Input
-										placeholder='Введите ваш email'
-										className='rounded-full py-2 px-4'
-									/>
-								</Form.Item>
+							<SubscriptionForm
+								onSuccess={handleSuccess}
+								onError={handleError}
+							/>
 
-								<Button
-									type='primary'
-									htmlType='submit'
-									size='large'
-									shape='round'
-									className='primary-bg w-full md:w-auto'
-									disabled={loading}
-								>
-									{loading ? <Spin /> : 'Начать!'}
-								</Button>
-							</Form>
-
-							{/* Анимация сообщения об успехе/ошибке */}
-							{message && (
-								<motion.div
-									className={`p-4 mb-4 rounded-lg ${
-										messageType === 'success'
-											? 'bg-green-500'
-											: 'bg-red-500'
-									} text-white`}
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									exit={{ opacity: 0 }}
-									transition={{ duration: 0.5 }}
-								>
-									{message}
-								</motion.div>
+							{/* Отображаем только на мобильных устройствах */}
+							{isMobile ? (
+								<p className='text-sm text-gray-600'>
+									Выберите свой план питания и любимые ингредиенты. Мы
+									позаботимся обо всем остальном
+								</p>
+							) : (
+								<p className='text-sm text-gray-600'>
+									Выберите свой план питания и любимые ингредиенты. Мы
+									позаботимся обо всем остальном, гарантируя доставку
+									свежих ингредиентов к вашей двери, готовых для
+									приготовления
+								</p>
 							)}
-
-							<p className='text-sm text-gray-600'>
-								Просто выберите свой план питания, выберите любимые
-								ингредиенты и разместите заказ. Мы позаботимся обо всем
-								остальном, гарантируя доставку свежих ингредиентов к
-								вашей двери, готовых для вас приготовить.
-							</p>
 						</motion.div>
 
 						<motion.div
@@ -160,7 +78,7 @@ const OrderSection = () => {
 				</div>
 			</div>
 		</section>
-  )
-};
+	)
+}
 
-export default OrderSection;
+export default OrderSection

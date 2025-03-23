@@ -42,11 +42,9 @@ const Footer = () => {
 					</div>
 				</div>
 
-				<div className='divider bg-gray-800'></div>
-
 				<div className='text-sm text-gray-400'>
 					<p>
-						Copyright © {currentYear} Есть что поесть. Все права защищены.{' '}
+						Copyright © {currentYear} Есть что поесть. Все права защищены{' '}
 						<Link
 							href='#order'
 							className='text-gray-400 hover:text-white'

@@ -5,29 +5,10 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Button } from 'antd'
 import Image from 'next/image'
+import useIsMobile from '@/helpers/useIsMobile'
 
 const Header = () => {
-	// Состояние для хранения текущей ширины экрана
-	const [isMobile, setIsMobile] = useState(false)
-
-	// Хук для обновления состояния ширины экрана
-	useEffect(() => {
-		const handleResize = () => {
-			// Устанавливаем isMobile в true, если ширина экрана меньше 700px
-			setIsMobile(window.innerWidth < 700)
-		}
-
-		// Добавляем слушатель событий на изменение размера окна
-		window.addEventListener('resize', handleResize)
-
-		// Выполняем проверку сразу после загрузки
-		handleResize()
-
-		// Убираем слушатель при размонтировании компонента
-		return () => {
-			window.removeEventListener('resize', handleResize)
-		}
-	}, [])
+	const isMobile = useIsMobile() // Используем хук
 
 	return (
 		<header className='bg-white shadow-sm py-4 fixed top-0 left-0 w-full z-50'>

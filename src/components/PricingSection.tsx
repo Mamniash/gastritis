@@ -2,34 +2,43 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { DollarSign } from 'lucide-react'
+import { Package } from 'lucide-react' // Заменено на CurrencyRuble
 import { Button } from 'antd'
 import Link from 'next/link'
-
 
 const pricingPlans = [
 	{
 		name: 'Базовый',
-		description: 'Бесплатный подбор меню, стандартное сравнение цен.',
+		description: 'Бесплатный подбор меню, стандартное сравнение цен',
 		price: '300р',
-		features: ['Подбор меню', 'Стандартное сравнение цен']
+		features: [
+			'Меню с быстрыми рецептами (до 15 минут готовки)',
+			'Минимальный список продуктов',
+			'Видеоуроки с пошаговыми инструкциями',
+			'Стандартное сравнение цен'
+		]
 	},
 	{
 		name: 'Оптимальный',
 		description:
-			'Персональные рекомендации, углублённый подбор и расширенный доступ к скидкам.',
+			'Персональные рекомендации, углублённый подбор и расширенный доступ к скидкам',
 		price: '500р',
 		features: [
-			'Персональные рекомендации',
-			'Углублённый подбор',
-			'Расширенный доступ к скидкам'
+			'Подсчет калорийности и БЖУ',
+			'Автоматическое составление списка покупок на неделю',
+			'Персональные рекомендации по питанию',
+			'Полностью автоматизированное планирование питания'
 		]
 	},
 	{
 		name: 'Премиум',
 		description: 'Полное сопровождение, приоритетная поддержка и доставка.',
 		price: '700р',
-		features: ['Полное сопровождение', 'Приоритетная поддержка', 'Доставка']
+		features: [
+			'Выбор блюд по бюджету, времени готовки и вкусовым предпочтениям',
+			'Приоритетная 24/7 поддержка и помощь по вопросам питания',
+			'Приоритетная доставка'
+		]
 	}
 ]
 
@@ -49,7 +58,7 @@ const PricingSection = () => {
 					</h2>
 					<p className='text-lg max-w-2xl mx-auto'>
 						Выбирайте тариф, который подходит вам и начинайте получать
-						максимум от нашего сервиса.
+						максимум от нашего сервиса
 					</p>
 				</motion.div>
 
@@ -69,7 +78,8 @@ const PricingSection = () => {
 							<p className='text-gray-600 mb-4'>{plan.description}</p>
 							<div className='flex items-center justify-between mb-6'>
 								<span className='text-3xl font-bold'>{plan.price}</span>
-								<DollarSign className='text-yellow-500' size={30} />
+								<Package className='text-yellow-500' size={30} />{' '}
+								{/* Используем CurrencyRuble вместо DollarSign */}
 							</div>
 							<ul className='mb-6'>
 								{plan.features.map((feature, index) => (
