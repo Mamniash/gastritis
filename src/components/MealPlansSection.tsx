@@ -30,11 +30,10 @@ const MealPlansSection = () => {
 									Экономьте время и деньги
 								</h4>
 								<p className='text-gray-300'>
-									Забудьте о долгих походах по магазинам
+									Забудьте о долгих походах&nbsp;по&nbsp;магазинам
 								</p>
 							</motion.div>
 						</Col>
-
 						<Col xs={24} md={12}>
 							<motion.div
 								whileHover={{ scale: 1.03 }}
@@ -46,11 +45,10 @@ const MealPlansSection = () => {
 								</h4>
 								<p className='text-gray-300'>
 									Автоматическое сравнение цен во всех магазинах
-									позволит вам экономить до 30%
+									позволит вам экономить&nbsp;до&nbsp;30%
 								</p>
 							</motion.div>
 						</Col>
-
 						<Col xs={24} md={12}>
 							<motion.div
 								whileHover={{ scale: 1.03 }}
@@ -62,11 +60,10 @@ const MealPlansSection = () => {
 								</h4>
 								<p className='text-gray-300'>
 									Ваш рацион всегда разнообразный и питательный,
-									учитывая все ваши ограничения
+									учитывая все ваши&nbsp;ограничения
 								</p>
 							</motion.div>
 						</Col>
-
 						<Col xs={24} md={12}>
 							<motion.div
 								whileHover={{ scale: 1.03 }}
@@ -79,7 +76,7 @@ const MealPlansSection = () => {
 								<p className='text-gray-300'>
 									Планирование рациона из списка блюд, на несколько
 									дней или недель вперед с расчетом бюджета, нужно
-									только нажать заказать
+									только нажать&nbsp;заказать
 								</p>
 							</motion.div>
 						</Col>

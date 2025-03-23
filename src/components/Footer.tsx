@@ -44,19 +44,20 @@ const Footer = () => {
 
 				<div className='text-sm text-gray-400'>
 					<p>
-						Copyright © {currentYear} Есть что поесть. Все права защищены{' '}
+						Copyright © {currentYear} Есть что поесть.
+						Все&nbsp;права&nbsp;защищены{' '}
 						<Link
 							href='#order'
 							className='text-gray-400 hover:text-white'
 						>
-							Условия использования
+							Условия&nbsp;использования
 						</Link>{' '}
 						|{' '}
 						<Link
 							href='#order'
 							className='text-gray-400 hover:text-white'
 						>
-							Политика конфиденциальности
+							Политика&nbsp;конфиденциальности
 						</Link>
 					</p>
 				</div>
