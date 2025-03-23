@@ -85,35 +85,35 @@ const HowItWorksSection = () => {
 					<div ref={sliderRef} className='keen-slider'>
 						<ProcessStep
 							title='Выберите блюда или рацион'
-							description='Сервис предложит меню исходя из ваших вкусов, диетических ограничений\u00A0и\u00A0калорийности'
+							description='Сервис предложит меню исходя из ваших вкусов, диетических ограничений&nbsp;и&nbsp;калорийности'
 							imageSrc='https://ext.same-assets.com/1266087314/4022716150.webp'
 							imageAlt='Выберите блюда или рацион'
 							delay={0}
 						/>
 						<ProcessStep
 							title='Автоматический разбор рецептов'
-							description='Мы разбиваем блюда на\u00A0конкретные\u00A0ингредиенты'
+							description='Мы разбиваем блюда на&nbsp;конкретные&nbsp;ингредиенты'
 							imageSrc='https://ext.same-assets.com/2436282666/601513818.webp'
 							imageAlt='Автоматический разбор рецептов'
 							delay={0.2}
 						/>
 						<ProcessStep
 							title='Сравнение цен'
-							description='Автоматически подберём лучшую цену среди всех магазинов и\u00A0сервисов\u00A0доставки'
+							description='Автоматически подберём лучшую цену среди всех&nbsp;магазинов и&nbsp;сервисов&nbsp;доставки'
 							imageSrc='https://ext.same-assets.com/570987083/83775813.webp'
 							imageAlt='Сравнение цен'
 							delay={0.4}
 						/>
 						<ProcessStep
 							title='Быстрая доставка'
-							description='Закажите всё необходимое одним нажатием и получите продукты у себя дома в\u00A0удобное\u00A0время'
+							description='Закажите всё необходимое одним нажатием и получите продукты у себя дома в&nbsp;удобное&nbsp;время'
 							imageSrc='https://ext.same-assets.com/570987083/83775813.webp'
 							imageAlt='Быстрая доставка'
 							delay={0.6}
 						/>
 						<ProcessStep
 							title='Инструкция по приготовлению'
-							description='Прямо в личном кабинете или приложении вы получите готовые пошаговые\u00A0инструкции'
+							description='Прямо в личном кабинете или приложении вы получите готовые пошаговые&nbsp;инструкции'
 							imageSrc='https://ext.same-assets.com/570987083/83775813.webp'
 							imageAlt='Инструкция по приготовлению'
 							delay={0.8}
