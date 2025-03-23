@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Input, Button, Spin } from 'antd'
 import { motion } from 'framer-motion'
 import { sendToTelegram } from '@/helpers/telegramApi'
@@ -16,6 +16,9 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({
 	const [loading, setLoading] = useState(false)
 	const [message, setMessage] = useState<string>('')
 	const [messageType, setMessageType] = useState<'success' | 'error' | ''>('')
+
+	// Время начала сессии
+	const [sessionStartTime] = useState<number>(Date.now())
 
 	// Определяем местоположение пользователя
 	const getLocation = async (): Promise<string> => {
@@ -39,6 +42,12 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({
 		return true
 	}
 
+	// Функция для вычисления времени сессии в секундах
+	const getSessionTimeInSeconds = (): number => {
+		return Math.floor((Date.now() - sessionStartTime) / 1000)
+	}
+
+	// Обработчик отправки формы
 	const handleSubmit = async (values: { phone: string }) => {
 		if (!canSendPhone()) {
 			setMessageType('error')
@@ -50,8 +59,10 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({
 
 		setLoading(true)
 		const location = await getLocation()
+		const sessionTime = getSessionTimeInSeconds()
 
-		const isSent = await sendToTelegram(values.phone, location)
+		// Отправка данных в Telegram
+		const isSent = await sendToTelegram(values.phone, location, sessionTime)
 		setLoading(false)
 
 		if (isSent) {
