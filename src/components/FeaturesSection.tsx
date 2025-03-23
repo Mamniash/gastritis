@@ -6,7 +6,7 @@ import { CheckCircle } from 'lucide-react'
 
 const features = [
 	{
-		title: 'Персонализированный подбор меню',
+		title: 'Персонализированный подбор\u00A0меню',
 		description:
 			'Учитываем ваши вкусы, цели и ограничения (КБЖУ,\u00A0аллергии)'
 	},
