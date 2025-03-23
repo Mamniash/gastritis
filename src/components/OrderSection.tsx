@@ -65,7 +65,7 @@ const OrderSection = () => {
 							className='w-full md:w-1/2 relative h-64 md:h-auto'
 						>
 							<Image
-								src='https://ext.same-assets.com/551949812/20905340.webp'
+								src='/images/order.jpg'
 								alt='Шеф-повар готовит свежие ингредиенты'
 								fill
 								style={{ objectFit: 'cover' }}

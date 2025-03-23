@@ -1,14 +1,17 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion';
-import { useKeenSlider } from 'keen-slider/react'
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import { useKeenSlider, KeenSliderInstance } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import ProcessStep from '@/components/ProcessStep'
 import useIsMobile from '@/helpers/useIsMobile'
+import Image from 'next/image' // Импортируем Image из next/image
 
 const HowItWorksSection = () => {
-	const [sliderRef] = useKeenSlider<HTMLDivElement>({
+	const [currentSlide, setCurrentSlide] = useState(0)
+
+	const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
 		slides: {
 			perView: 1.2,
 			spacing: 16
@@ -20,10 +23,22 @@ const HowItWorksSection = () => {
 			'(min-width: 1024px)': {
 				slides: { perView: 3, spacing: 24 }
 			}
+		},
+		slideChanged(slider) {
+			setCurrentSlide(slider.track.details.rel)
 		}
 	})
 
-	const isMobile = useIsMobile() // Используем хук
+	const isMobile = useIsMobile()
+
+	const goToSlide = (index: number) => {
+		const slideIndex = index
+		if (slider?.current) {
+			;(slider.current as unknown as KeenSliderInstance).moveToIdx(
+				slideIndex
+			)
+		}
+	}
 
 	return (
 		<section className='py-16 bg-gray-50'>
@@ -48,7 +63,7 @@ const HowItWorksSection = () => {
 						рациона до доставки свежих&nbsp;ингредиентов
 					</p>
 				</motion.div>
-				{/* Для мобильного устройства показываем карточки вертикально с анимацией */}
+
 				{isMobile ? (
 					<div className='flex flex-col items-center space-y-8'>
 						{[
@@ -76,7 +91,8 @@ const HowItWorksSection = () => {
 											'Прямо в личном кабинете или приложении вы получите\u00A0готовые пошаговые\u00A0инструкции'
 										][index]
 									}
-									imageSrc='https://ext.same-assets.com/570987083/83775813.webp'
+									// Используем компонент Image для вставки изображения
+									imageSrc={`/images/work${index + 1}.jpg`} // Убедитесь, что изображения находятся в папке /public/images/
 									imageAlt={title}
 									delay={0}
 								/>
@@ -88,38 +104,49 @@ const HowItWorksSection = () => {
 						<ProcessStep
 							title='Выберите блюда или рацион'
 							description='Сервис предложит меню исходя из ваших вкусов, диетических ограничений&nbsp;и&nbsp;калорийности'
-							imageSrc='https://ext.same-assets.com/1266087314/4022716150.webp'
+							// Используем компонент Image
+							imageSrc='/images/work1.jpg'
 							imageAlt='Выберите блюда или рацион'
-							delay={0}
 						/>
 						<ProcessStep
 							title='Автоматический разбор рецептов'
 							description='Мы разбиваем блюда на&nbsp;конкретные&nbsp;ингредиенты'
-							imageSrc='https://ext.same-assets.com/2436282666/601513818.webp'
+							imageSrc='/images/work2.jpg'
 							imageAlt='Автоматический разбор рецептов'
-							delay={0.2}
 						/>
 						<ProcessStep
 							title='Сравнение цен'
 							description='Автоматически подберём лучшую цену среди всех&nbsp;магазинов и&nbsp;сервисов&nbsp;доставки'
-							imageSrc='https://ext.same-assets.com/570987083/83775813.webp'
+							imageSrc='/images/work3.jpg'
 							imageAlt='Сравнение цен'
-							delay={0.4}
 						/>
 						<ProcessStep
 							title='Быстрая доставка'
 							description='Закажите всё необходимое одним нажатием и получите продукты у себя дома в&nbsp;удобное&nbsp;время'
-							imageSrc='https://ext.same-assets.com/570987083/83775813.webp'
+							imageSrc='/images/work4.jpg'
 							imageAlt='Быстрая доставка'
-							delay={0.6}
 						/>
 						<ProcessStep
 							title='Инструкция по приготовлению'
 							description='Прямо в личном кабинете или приложении вы получите готовые пошаговые&nbsp;инструкции'
-							imageSrc='https://ext.same-assets.com/570987083/83775813.webp'
+							imageSrc='/images/work5.jpg'
 							imageAlt='Инструкция по приготовлению'
-							delay={0.8}
 						/>
+					</div>
+				)}
+
+				{/* Навигационные точки для ПК */}
+				{!isMobile && (
+					<div className='flex justify-center mt-8'>
+						{[...Array(3)].map((_, index) => (
+							<button
+								key={index}
+								className={`w-6 h-6 rounded-full mx-3 transition-colors duration-300 ${
+									currentSlide === index ? 'bg-[#934a3a]' : 'bg-[#ddd]'
+								}`}
+								onClick={() => goToSlide(index)}
+							/>
+						))}
 					</div>
 				)}
 			</div>
@@ -127,4 +154,4 @@ const HowItWorksSection = () => {
 	)
 }
 
-export default HowItWorksSection;
+export default HowItWorksSection

@@ -12,7 +12,7 @@ interface ProcessStepProps {
 	description: string
 	imageSrc: string
 	imageAlt: string
-	delay: number
+	delay?: number
 }
 
 const ProcessStep = ({
@@ -20,7 +20,7 @@ const ProcessStep = ({
 	description,
 	imageSrc,
 	imageAlt,
-	delay
+	delay = 0
 }: ProcessStepProps) => {
 	return (
 		<motion.div

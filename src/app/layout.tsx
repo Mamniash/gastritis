@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 	description:
 		'Планы питания с доставкой всех необходимых ингредиентов к вашей двери. Наслаждайтесь вкусными и полезными блюдами без лишних хлопот.',
 	icons: {
-		icon: 'https://ext.same-assets.com/3626002921/3981942025.webp'
+		icon: '/favicon2.svg'
 	}
 }
 

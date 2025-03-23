@@ -24,7 +24,7 @@ const HeroSection = () => {
 					className='w-full md:w-1/2 relative'
 				>
 					<Image
-						src='https://ext.same-assets.com/615867683/3055122514.webp'
+						src='/images/main.jpg'
 						alt='Свежие овощи и здоровая еда'
 						width={600}
 						height={400}
