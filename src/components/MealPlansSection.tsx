@@ -27,7 +27,7 @@ const MealPlansSection = () => {
 								className='bg-[#1a1a1a] rounded-xl p-8 h-full'
 							>
 								<h4 className='text-2xl font-bold mb-4'>
-									Экономьте время и деньги
+									Экономьте время&nbsp;и&nbsp;деньги
 								</h4>
 								<p className='text-gray-300'>
 									Забудьте о долгих походах&nbsp;по&nbsp;магазинам

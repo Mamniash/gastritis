@@ -37,8 +37,10 @@ const HowItWorksSection = () => {
 				>
 					<h2 className='text-3xl md:text-4xl font-bold mb-2'>
 						Узнайте, как{' '}
-						<span className='primary-color'>Есть что поесть</span>{' '}
-						упрощает вашу жизнь
+						<span className='primary-color'>
+							Есть&nbsp;что&nbsp;поесть
+						</span>{' '}
+						упрощает вашу&nbsp;жизнь
 					</h2>
 					<p className='text-lg text-gray-600'>
 						С Есть что поесть, здоровое и вкусное питание становится проще

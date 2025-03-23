@@ -29,7 +29,7 @@ const OrderSection = () => {
 							viewport={{ once: true }}
 							className='w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center'
 						>
-							<h2 className='text-3xl md:text-4xl font-bold mb-6'>
+							<h2 className='text-2xl md:text-3xl font-bold mb-6'>
 								Хотите попробовать&nbsp;первым?
 							</h2>
 							<p className='text-lg mb-8'>

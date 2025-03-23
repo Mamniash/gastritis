@@ -39,8 +39,10 @@ const HeroSection = () => {
 					className='w-full md:w-1/2 mt-8 md:mt-0 md:pl-12'
 				>
 					<h1 className='text-4xl md:text-5xl font-bold mb-4'>
-						<span className='primary-color'>Есть что поесть</span>.
-						Ваш&nbsp;идеальный рацион без хлопот&nbsp;и&nbsp;переплат
+						<span className='primary-color'>
+							Есть&nbsp;что&nbsp;поесть
+						</span>
+						. Ваш&nbsp;идеальный рацион без хлопот&nbsp;и&nbsp;переплат
 					</h1>
 
 					<p className='text-lg mb-8'>
