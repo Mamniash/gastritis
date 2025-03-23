@@ -113,7 +113,7 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({
 			{/* Анимация сообщения об успехе/ошибке */}
 			{message && (
 				<motion.div
-					className={`p-4 mt-4 rounded-lg ${
+					className={`p-4 my-2 rounded-lg ${
 						messageType === 'success' ? 'bg-green-500' : 'bg-red-500'
 					} text-white`}
 					initial={{ opacity: 0 }}
