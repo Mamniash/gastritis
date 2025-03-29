@@ -106,7 +106,7 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({
 					disabled={loading}
 					block
 				>
-					{loading ? <Spin /> : 'Подписаться'}
+					{loading ? <Spin /> : 'Начать'}
 				</Button>
 			</Form>
 
