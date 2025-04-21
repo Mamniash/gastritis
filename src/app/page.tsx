@@ -17,13 +17,13 @@ export default function Home() {
 		<main>
 			<Header />
 			<HeroSection />
-			<MissionSection />
+			{/* <MissionSection /> */}
 			<HowItWorksSection />
 			<MealPlansSection />
-			<FeaturesSection />
+			{/* <FeaturesSection /> */}
 			{/* <DeliverySection /> */}
-			<PricingSection />
-			<FAQSection />
+			{/* <PricingSection /> */}
+			{/* <FAQSection /> */}
 			<OrderSection />
 			{/* <TestimonialsSection /> */}
 			<Footer />
