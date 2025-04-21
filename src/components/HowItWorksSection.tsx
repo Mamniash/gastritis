@@ -43,13 +43,7 @@ const HowItWorksSection = () => {
 	return (
 		<section className='py-16 bg-gray-50'>
 			<div className='container mx-auto px-4'>
-				<motion.div
-					initial={{ opacity: 0, y: 30 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5 }}
-					viewport={{ once: true }}
-					className='text-center mb-12'
-				>
+				<motion.div className='text-center mb-12'>
 					<h2 className='text-3xl md:text-4xl font-bold mb-2'>
 						Узнайте, как это работает
 					</h2>
@@ -64,13 +58,7 @@ const HowItWorksSection = () => {
 							'Быстрая доставка',
 							'Инструкция по приготовлению'
 						].map((title, index) => (
-							<motion.div
-								key={index}
-								initial={{ opacity: 0, y: 30 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: index * 0.2 }}
-								className='text-center w-full'
-							>
+							<motion.div key={index} className='text-center w-full'>
 								<ProcessStep
 									title={title}
 									description={
