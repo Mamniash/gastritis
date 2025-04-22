@@ -42,6 +42,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ open, onClose }) => {
 			footer={null}
 			centered
 			destroyOnClose
+			maskStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.9)' }}
 		>
 			<div className='text-center p-4'>
 				<Title level={4}>Получите идеальный рацион по лучшей цене!</Title>
