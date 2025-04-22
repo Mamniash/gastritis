@@ -1,18 +1,13 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import SubscriptionForm from '@/components/SubscriptionForm'
+import OrderModal from './OrderModal'
 
 const HeroSection = () => {
-	const handleSuccess = (email: string) => {
-		console.log(`Успешная подписка! Почта: ${email}`)
-	}
-
-	const handleError = (message: string) => {
-		console.log(`Ошибка: ${message}`)
-	}
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	return (
 		<section className='relative overflow-hidden scroll-mt-28 ' id='head'>
@@ -52,9 +47,35 @@ const HeroSection = () => {
 						выгодное предложение.
 					</p>
 
-					<SubscriptionForm
-						onSuccess={handleSuccess}
-						onError={handleError}
+					{/* Кнопка "Начать" */}
+					<motion.div
+						initial={{ opacity: 0, scale: 0.95 }}
+						whileInView={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.6 }}
+						className='flex justify-center mb-6'
+					>
+						<motion.button
+							onClick={() => setIsModalOpen(true)}
+							className='w-full max-w-sm relative bg-[#934a3a] hover:bg-[#b95c4d] text-white font-semibold px-4 py-3 rounded-full text-base shadow-md'
+							whileHover={{ scale: 1.02 }}
+							whileTap={{ scale: 0.98 }}
+							animate={{
+								scale: [1, 1.03, 1],
+								opacity: [1, 0.95, 1]
+							}}
+							transition={{
+								duration: 2,
+								repeat: Infinity,
+								ease: 'easeInOut'
+							}}
+						>
+							Получить меню
+						</motion.button>
+					</motion.div>
+
+					<OrderModal
+						open={isModalOpen}
+						onClose={() => setIsModalOpen(false)}
 					/>
 				</motion.div>
 			</div>
@@ -63,11 +84,3 @@ const HeroSection = () => {
 }
 
 export default HeroSection
-
-
-/*
-, разбиваем блюда на ингредиенты и сравниваем цены
-						во всех магазинах. Вам остается лишь получить продукты прямо к
-						двери и наслаждаться вкусной, разнообразной и
-						сбалансированной&nbsp;едой 
-						*/

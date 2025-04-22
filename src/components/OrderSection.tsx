@@ -1,21 +1,14 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import SubscriptionForm from '@/components/SubscriptionForm'
-import useIsMobile from '@/helpers/useIsMobile' // Импортируем хук
+import OrderModal from '@/components/OrderModal'
+import useIsMobile from '@/helpers/useIsMobile'
 
 const OrderSection = () => {
-	const isMobile = useIsMobile() // Используем хук
-
-	const handleSuccess = (email: string) => {
-		console.log(`Успешная подписка! Почта: ${email}`)
-	}
-
-	const handleError = (message: string) => {
-		console.log(`Ошибка: ${message}`)
-	}
+	const isMobile = useIsMobile()
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	return (
 		<section className='py-16 bg-gray-100 scroll-mt-16 ' id='order'>
@@ -37,11 +30,32 @@ const OrderSection = () => {
 								получите бесплатный доступ к премиум-функциям на
 								первые&nbsp;2&nbsp;недели!
 							</p>
-							<SubscriptionForm
-								onSuccess={handleSuccess}
-								onError={handleError}
-							/>
-							{/* Отображаем только на мобильных устройствах */}
+
+							<motion.div
+								initial={{ opacity: 0, scale: 0.95 }}
+								whileInView={{ opacity: 1, scale: 1 }}
+								transition={{ duration: 0.6 }}
+								className='flex justify-center mb-6'
+							>
+								<motion.button
+									onClick={() => setIsModalOpen(true)}
+									className='w-full max-w-sm relative bg-[#934a3a] hover:bg-[#b95c4d] text-white font-semibold px-4 py-3 rounded-full text-base shadow-md'
+									whileHover={{ scale: 1.02 }}
+									whileTap={{ scale: 0.98 }}
+									animate={{
+										scale: [1, 1.03, 1],
+										opacity: [1, 0.95, 1]
+									}}
+									transition={{
+										duration: 2,
+										repeat: Infinity,
+										ease: 'easeInOut'
+									}}
+								>
+									Пробовать бесплатно
+								</motion.button>
+							</motion.div>
+
 							{isMobile ? (
 								<p className='text-sm text-gray-600'>
 									Выберите свой план питания и любимые ингредиенты. Мы
@@ -50,11 +64,16 @@ const OrderSection = () => {
 							) : (
 								<p className='text-sm text-gray-600'>
 									Выберите свой план питания и любимые ингредиенты. Мы
-									позаботимся обо всем остальном, гарантируя доставку
+									позаботимся обо всём остальном, гарантируя доставку
 									свежих ингредиентов к вашей двери, готовых
 									для&nbsp;приготовления
 								</p>
 							)}
+
+							<OrderModal
+								open={isModalOpen}
+								onClose={() => setIsModalOpen(false)}
+							/>
 						</motion.div>
 
 						<motion.div

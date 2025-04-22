@@ -92,7 +92,7 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({
 					style={{ flex: 1 }}
 				>
 					<Input
-						placeholder='Получите рацион по минимальной цене за 10 секунд.'
+						placeholder='Телефон'
 						className='rounded-full px-4 py-2'
 					/>
 				</Form.Item>
