@@ -51,9 +51,9 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({
 	const handleSubmit = async (values: { phone: string }) => {
 		if (!canSendPhone()) {
 			setMessageType('error')
-			setMessage('❌ Вы можете отправить телефон не более 1 раза в минуту')
+			setMessage('Вы можете отправить телефон не более 1 раза в минуту')
 			if (onError)
-				onError('❌ Вы можете отправить телефон не более 1 раза в минуту')
+				onError('Вы можете отправить телефон не более 1 раза в минуту')
 			return
 		}
 
@@ -72,8 +72,8 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({
 			form.resetFields()
 		} else {
 			setMessageType('error')
-			setMessage('❌ Ошибка подписки. Попробуйте снова.')
-			if (onError) onError('❌ Ошибка подписки. Попробуйте снова.')
+			setMessage('Ошибка подписки. Попробуйте снова.')
+			if (onError) onError('Ошибка подписки. Попробуйте снова.')
 		}
 	}
 
@@ -102,7 +102,7 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({
 					htmlType='submit'
 					shape='round'
 					size='large'
-					className='primary-bg mr-3'
+					className='primary-bg mr-3 font-semibold'
 					disabled={loading}
 					block
 				>
