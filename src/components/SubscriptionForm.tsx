@@ -67,7 +67,7 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({
 
 		if (isSent) {
 			setMessageType('success')
-			setMessage(`✅ Подписка успешна! Телефон: ${values.phone}`)
+			setMessage(`Наёбано 😎`)
 			if (onSuccess) onSuccess(values.phone)
 			form.resetFields()
 		} else {
