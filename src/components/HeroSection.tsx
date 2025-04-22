@@ -11,7 +11,7 @@ const HeroSection = () => {
 
 	return (
 		<section className='relative overflow-hidden scroll-mt-28 ' id='head'>
-			<div className='container mx-auto px-4 py-12 md:py-16 flex flex-col md:flex-row items-center'>
+			<div className='container mx-auto px-4 pt-12 pb-4 md:py-16 flex flex-col md:flex-row items-center'>
 				<motion.div
 					initial={{ opacity: 0, x: -50 }}
 					animate={{ opacity: 1, x: 0 }}

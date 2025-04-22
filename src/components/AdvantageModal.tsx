@@ -48,16 +48,16 @@ const AdvantageModal: React.FC<AdvantageModalProps> = ({
 			{ name: 'Мы', price: 880 }
 		],
 		allInOne: [
-			{ week: '1-я', time: 60 },
-			{ week: '2-я', time: 40 },
-			{ week: '3-я', time: 20 },
-			{ week: '4-я', time: 10 }
+			{ week: '', time: 60 },
+			{ week: '1-я', time: 50 },
+			{ week: '2-я', time: 20 },
+			{ week: '3-я', time: 10 }
 		],
 		discounts: [
-			{ week: '1-я', savings: 320 },
-			{ week: '2-я', savings: 400 },
-			{ week: '3-я', savings: 380 },
-			{ week: '4-я', savings: 450 }
+			{ week: '', savings: 0 },
+			{ week: '1-я', savings: 290 },
+			{ week: '2-я', savings: 420 },
+			{ week: '3-я', savings: 450 }
 		],
 		balance: [
 			{ subject: 'Белки', A: 90 },

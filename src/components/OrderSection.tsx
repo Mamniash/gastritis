@@ -11,7 +11,7 @@ const OrderSection = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	return (
-		<section className='py-16 bg-gray-100 scroll-mt-16 ' id='order'>
+		<section className='py-12 bg-gray-100 scroll-mt-16 ' id='order'>
 			<div className='container mx-auto px-4'>
 				<div className='bg-white rounded-xl overflow-hidden shadow-lg'>
 					<div className='flex flex-col md:flex-row'>
@@ -25,7 +25,7 @@ const OrderSection = () => {
 							<h2 className='text-2xl md:text-3xl font-bold mb-6'>
 								Хотите попробовать&nbsp;первым?
 							</h2>
-							<p className='text-lg mb-8'>
+							<p className='text-lg mb-6'>
 								Присоединяйтесь к нашей программе бета-тестирования и
 								получите бесплатный доступ к премиум-функциям на
 								первые&nbsp;2&nbsp;недели!
