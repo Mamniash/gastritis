@@ -6,31 +6,31 @@ import { StarFilled } from '@ant-design/icons'
 import Link from 'next/link'
 
 const avatars = [
-	'https://ui-avatars.com/api/?name=Ирина&background=934a3a&color=fff&rounded=true&size=64',
-	'https://ui-avatars.com/api/?name=Виталий&background=934a3a&color=fff&rounded=true&size=64',
-	'https://ui-avatars.com/api/?name=Наталья&background=934a3a&color=fff&rounded=true&size=64'
+	'https://ui-avatars.com/api/?name=Ольга&background=934a3a&color=fff&rounded=true&size=64',
+	'https://ui-avatars.com/api/?name=Елена&background=934a3a&color=fff&rounded=true&size=64',
+	'https://ui-avatars.com/api/?name=Анна&background=934a3a&color=fff&rounded=true&size=64'
 ]
 
 const starCount = 5
 
 const testimonials = [
 	{
-		name: 'Ирина',
-		subtitle: 'стабилизировала гастрит',
-		text: 'Уже несколько месяцев в ремиссии! Рационы мягкие, продуманные и помогают не бояться новых срывов. Готовить легко, а вкус радует.',
-		tag: 'Безопасно и вкусно'
+		name: 'Ольга',
+		subtitle: 'страдала от боли при гастрите',
+		text: 'Боль мучила меня по вечерам. Уже через 3 дня с рационом от вас я почувствовала облегчение. Спасибо за безопасные и вкусные блюда!',
+		tag: 'Быстрое облегчение'
 	},
 	{
-		name: 'Виталий',
-		subtitle: 'пробовал разные диеты',
-		text: 'Перерывы были, тяжесть возвращалась. С этим рационом желудок в порядке, а еда — настоящая радость, не обычная пресная пища.',
-		tag: 'Стабильность и разнообразие'
+		name: 'Елена',
+		subtitle: 'использовала наборы при обострении',
+		text: 'Эти рационы — настоящее спасение. Все продукты проверены и подходящие, боли значительно уменьшились уже в первую неделю.',
+		tag: 'Одобрено врачами'
 	},
 	{
-		name: 'Наталья',
-		subtitle: 'следит за диетой',
-		text: 'Важно не только исключать вредное, но и получать удовольствие от еды. Эти наборы — именно то, что нужно при гастрите в ремиссии.',
-		tag: 'Удобство и поддержка'
+		name: 'Анна',
+		subtitle: 'нашла надежный способ борьбы с гастритом',
+		text: 'С набором я перестала бояться еды. Простые рецепты и поддержка специалистов помогли избавиться от боли и улучшить самочувствие.',
+		tag: 'Поддержка и безопасность'
 	}
 ]
 
@@ -39,7 +39,7 @@ const TestimonialsSection = () => {
 		<section className='py-16 bg-gray-200'>
 			<div className='container mx-auto px-4 max-w-7xl'>
 				<h2 className='text-3xl md:text-4xl font-bold mb-12 max-w-md mx-auto text-center'>
-					А ещё лучше про нас расскажут отзывы наших клиентов с гастритом
+					Отзывы тех, кто избавился от боли
 				</h2>
 
 				<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
