@@ -6,9 +6,11 @@ import { motion } from 'framer-motion'
 import { Button } from 'antd'
 import Image from 'next/image'
 import useIsMobile from '@/helpers/useIsMobile'
+import OrderModal from './OrderModal'
 
 const Header = () => {
 	const isMobile = useIsMobile() // Используем хук
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	return (
 		<header className='bg-white shadow-sm py-4 fixed top-0 left-0 w-full z-50'>
@@ -58,16 +60,19 @@ const Header = () => {
 					)}
 
 					{/* Условная отрисовка текста на кнопке "Заказать" в зависимости от разрешения */}
-					<Link href='#order'>
-						<Button
-							className='py-4 sm:text-sm md:text-base lg:text-lg ml-3'
-							type='primary'
-							shape='round'
-							size='large'
-						>
-							{isMobile ? 'Заказать' : 'Заказать сейчас'}
-						</Button>
-					</Link>
+					<Button
+						className='py-4 sm:text-sm md:text-base lg:text-lg ml-3'
+						type='primary'
+						shape='round'
+						size='large'
+						onClick={() => setIsModalOpen(true)}
+					>
+						{isMobile ? 'Заказать' : 'Заказать сейчас'}
+					</Button>
+					<OrderModal
+						open={isModalOpen}
+						onClose={() => setIsModalOpen(false)}
+					/>
 				</motion.div>
 			</div>
 		</header>

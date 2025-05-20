@@ -22,58 +22,72 @@ const HowItWorksSection = () => {
 
 	const steps = [
 		{
-			title: 'Выберите рацион для гастрита',
+			title: 'Выберите меню или\u00A0рацион',
 			description:
-				'Подберите меню, адаптированное под ваш тип гастрита и стадию заболевания',
+				'Сервис предложит меню исходя из ваших вкусов, диетических ограничений и\u00A0калорийности',
+			imageSrc: '/images/work1.jpg',
+			imageAlt: 'Выберите блюда или рацион'
+		},
+		{
+			title: 'Мы автоматически разберём его\u00A0на\u00A0блюда',
+			description:
+				'Мы разбиваем блюда на конкретные продукты из магазинов\u00A0доставки',
 			imageSrc: '/images/work2.jpg',
-			imageAlt: 'Выбор рациона'
+			imageAlt: 'Автоматический разбор рецептов'
 		},
 		{
-			title: 'Получите безопасные ингредиенты',
+			title: 'Сравниваем цены',
 			description:
-				'Все продукты проверены на отсутствие раздражающих компонентов и аллергенов',
+				'Каждый ингредиент сравнивается по цене, и мы подбираем самые выгодные\u00A0предложения',
+			imageSrc: '/images/work3.jpg',
+			imageAlt: 'Сравнение цен'
+		},
+		{
+			title: 'Быстро доставляем',
+			description:
+				'Закажите всё необходимое одним нажатием и получите продукты у себя дома в удобное\u00A0время',
 			imageSrc: '/images/work4.jpg',
-			imageAlt: 'Безопасные продукты'
+			imageAlt: 'Быстрая доставка'
 		},
 		{
-			title: 'Готовьте легко и вкусно',
+			title: 'Вместе с инструкциями по готовке',
 			description:
-				'Простые рецепты с минимальным количеством шагов и мягкими вкусами — без стресса и боли',
+				'В личном кабинете вы получите готовые пошаговые\u00A0инструкции',
 			imageSrc: '/images/work5.jpg',
-			imageAlt: 'Приготовление блюд'
+			imageAlt: 'Инструкция по приготовлению'
 		}
 	]
 
 	return (
-		<section className='py-16 bg-gray-50'>
+		<section className='pb-16 pt-6 bg-gray-50'>
 			<div className='container mx-auto px-4'>
-				<motion.div className='text-center mb-12'>
+				<motion.div className='text-center mb-8'>
 					<h2 className='text-3xl md:text-4xl font-bold mb-2'>
 						Как мы помогаем сохранить здоровье желудка
 					</h2>
 				</motion.div>
 
 				<div ref={sliderRef} className='keen-slider'>
-					{steps.map(({ title, description, imageSrc, imageAlt }, idx) => (
+					{steps.map((step, index) => (
 						<ProcessStep
-							key={idx}
-							title={title}
-							description={description}
-							imageSrc={imageSrc}
-							imageAlt={imageAlt}
-							delay={idx * 0.2}
+							key={index}
+							title={step.title}
+							description={step.description}
+							imageSrc={step.imageSrc}
+							imageAlt={step.imageAlt}
+							delay={0.1 * index}
 						/>
 					))}
 				</div>
 
 				<div className='flex justify-center mt-8'>
-					{[...Array(3)].map((_, index) => (
+					{steps.map((_, index) => (
 						<button
 							key={index}
-							className={`w-6 h-6 rounded-full mx-3 transition-colors duration-300 ${
-								currentSlide === index ? 'bg-[#934a3a]' : 'bg-[#ddd]'
+							className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full mx-2 transition-colors duration-300 ${
+								currentSlide === index ? 'bg-[#934a3a]' : 'bg-[#ccc]'
 							}`}
-							onClick={() => slider?.current?.moveToIdx(index)}
+							onClick={() => slider.current?.moveToIdx(index)}
 						/>
 					))}
 				</div>
