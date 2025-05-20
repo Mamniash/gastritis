@@ -15,7 +15,7 @@ const HeroSection = () => {
 	}
 
 	return (
-		<section className='relative overflow-hidden scroll-mt-28 ' id='head'>
+		<section className='relative overflow-hidden scroll-mt-28' id='head'>
 			<div className='container mx-auto px-4 py-12 md:py-16 flex flex-col md:flex-row items-center'>
 				<motion.div
 					initial={{ opacity: 0, x: -50 }}
@@ -24,8 +24,8 @@ const HeroSection = () => {
 					className='w-full md:w-1/2 relative'
 				>
 					<Image
-						src='/images/main.jpg'
-						alt='Свежие овощи и здоровая еда'
+						src='/images/main.jpg' // старое фото
+						alt='Здоровое разнообразное питание для гастрита'
 						width={600}
 						height={400}
 						className='rounded-lg shadow-lg'
@@ -40,16 +40,14 @@ const HeroSection = () => {
 				>
 					<h1 className='text-4xl md:text-5xl font-bold mb-4'>
 						<span className='primary-color'>
-							Есть&nbsp;что&nbsp;поесть
+							Гастрит — не приговор для вкусной еды
 						</span>
-						. Ваш&nbsp;идеальный рацион без хлопот&nbsp;и&nbsp;переплат
 					</h1>
 
 					<p className='text-lg mb-8'>
-						Автоматически подбираем меню на неделю с учетом ваших
-						предпочтений. Мы сравниваем цены на продукты и готовые блюда
-						во всех сервисах доставки, чтобы вы всегда получали самое
-						выгодное предложение.
+						Специально разработанные рационы для людей с гастритом —
+						сбалансированные, безопасные и разнообразные блюда, которые
+						помогут поддерживать здоровье желудка и наслаждаться едой.
 					</p>
 
 					<SubscriptionForm
@@ -63,11 +61,3 @@ const HeroSection = () => {
 }
 
 export default HeroSection
-
-
-/*
-, разбиваем блюда на ингредиенты и сравниваем цены
-						во всех магазинах. Вам остается лишь получить продукты прямо к
-						двери и наслаждаться вкусной, разнообразной и
-						сбалансированной&nbsp;едой 
-						*/

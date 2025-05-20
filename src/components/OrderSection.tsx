@@ -4,10 +4,10 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import SubscriptionForm from '@/components/SubscriptionForm'
-import useIsMobile from '@/helpers/useIsMobile' // Импортируем хук
+import useIsMobile from '@/helpers/useIsMobile'
 
 const OrderSection = () => {
-	const isMobile = useIsMobile() // Используем хук
+	const isMobile = useIsMobile()
 
 	const handleSuccess = (email: string) => {
 		console.log(`Успешная подписка! Почта: ${email}`)
@@ -18,7 +18,7 @@ const OrderSection = () => {
 	}
 
 	return (
-		<section className='py-16 bg-gray-100 scroll-mt-16 ' id='order'>
+		<section className='py-16 bg-gray-100 scroll-mt-16' id='order'>
 			<div className='container mx-auto px-4'>
 				<div className='bg-white rounded-xl overflow-hidden shadow-lg'>
 					<div className='flex flex-col md:flex-row'>
@@ -30,30 +30,26 @@ const OrderSection = () => {
 							className='w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center'
 						>
 							<h2 className='text-2xl md:text-3xl font-bold mb-6'>
-								Хотите попробовать&nbsp;первым?
+								Хотите питаться вкусно и без боли?
 							</h2>
 							<p className='text-lg mb-8'>
-								Присоединяйтесь к нашей программе бета-тестирования и
-								получите бесплатный доступ к премиум-функциям на
-								первые&nbsp;2&nbsp;недели!
+								Получите персонализированный рацион для гастрита с
+								гарантией безопасности и поддержкой нутрициолога.
 							</p>
 							<SubscriptionForm
 								onSuccess={handleSuccess}
 								onError={handleError}
 							/>
-							{/* Отображаем только на мобильных устройствах */}
 							{isMobile ? (
-								<p className='text-sm text-gray-600'>
-									Выберите свой план питания и любимые ингредиенты. Мы
-									позаботимся обо всем&nbsp;остальном
+								<p className='text-sm text-gray-600 mt-4'>
+									Просто выберите свой план питания и получайте свежие,
+									безопасные продукты с подробными рецептами.
 								</p>
 							) : (
-								<p className='text-sm text-gray-600'>
-									Выберите свой план питания и любимые ингредиенты. Мы
-									позаботимся обо всем остальном, гарантируя доставку
-									свежих ингредиентов к вашей двери, готовых
-									для&nbsp;приготовления
-								</p> 
+								<p className='text-sm text-gray-600 mt-4'>
+									Удобство и разнообразие каждый день — питание,
+									адаптированное под ваш желудок.
+								</p>
 							)}
 						</motion.div>
 

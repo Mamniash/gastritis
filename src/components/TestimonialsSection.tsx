@@ -6,31 +6,31 @@ import { StarFilled } from '@ant-design/icons'
 import Link from 'next/link'
 
 const avatars = [
-	'https://ui-avatars.com/api/?name=Вадим+Некрасов&background=934a3a&color=fff&rounded=true&size=64',
-	'https://ui-avatars.com/api/?name=Наталья+и+Алексей&background=934a3a&color=fff&rounded=true&size=64',
-	'https://ui-avatars.com/api/?name=Анастасия+Михайлова&background=934a3a&color=fff&rounded=true&size=64'
+	'https://ui-avatars.com/api/?name=Ирина&background=934a3a&color=fff&rounded=true&size=64',
+	'https://ui-avatars.com/api/?name=Виталий&background=934a3a&color=fff&rounded=true&size=64',
+	'https://ui-avatars.com/api/?name=Наталья&background=934a3a&color=fff&rounded=true&size=64'
 ]
 
 const starCount = 5
 
 const testimonials = [
 	{
-		name: 'Вадим Некрасов',
-		subtitle: 'готовит для себя',
-		text: 'Я теперь супы ем! Вместо макарон и яичницы)) Лук нарезали, бульон сварили, говядину потушили. Где вы были раньше?',
-		tag: 'Быстро и удобно'
+		name: 'Ирина',
+		subtitle: 'стабилизировала гастрит',
+		text: 'Уже несколько месяцев в ремиссии! Рационы мягкие, продуманные и помогают не бояться новых срывов. Готовить легко, а вкус радует.',
+		tag: 'Безопасно и вкусно'
 	},
 	{
-		name: 'Наталья и Алексей',
-		subtitle: 'готовят вдвоём',
-		text: 'Эти соусы маринара, тоннато, чипсы из шалфея... «Что-то на ресторанном», а у нас теперь такое дома каждый день!',
-		tag: 'Вкусно, как в ресторане'
+		name: 'Виталий',
+		subtitle: 'пробовал разные диеты',
+		text: 'Перерывы были, тяжесть возвращалась. С этим рационом желудок в порядке, а еда — настоящая радость, не обычная пресная пища.',
+		tag: 'Стабильность и разнообразие'
 	},
 	{
-		name: 'Анастасия Михайлова',
-		subtitle: 'готовит на всю семью',
-		text: 'Просто отключаешь голову, открываешь холодильник, берёшь заветный пакетик, 15 минут и — все сыты и счастливы!',
-		tag: 'Помогает готовить'
+		name: 'Наталья',
+		subtitle: 'следит за диетой',
+		text: 'Важно не только исключать вредное, но и получать удовольствие от еды. Эти наборы — именно то, что нужно при гастрите в ремиссии.',
+		tag: 'Удобство и поддержка'
 	}
 ]
 
@@ -39,7 +39,7 @@ const TestimonialsSection = () => {
 		<section className='py-16 bg-gray-200'>
 			<div className='container mx-auto px-4 max-w-7xl'>
 				<h2 className='text-3xl md:text-4xl font-bold mb-12 max-w-md mx-auto text-center'>
-					А ещё лучше про нас расскажут отзывы наших клиентов
+					А ещё лучше про нас расскажут отзывы наших клиентов с гастритом
 				</h2>
 
 				<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
