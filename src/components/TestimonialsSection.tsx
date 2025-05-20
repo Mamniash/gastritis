@@ -1,98 +1,98 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Row, Col, Card, Avatar } from 'antd';
-import Image from 'next/image';
+import React from 'react'
+import { Card, Button } from 'antd'
+import { StarFilled } from '@ant-design/icons'
+import Link from 'next/link'
 
-interface TestimonialProps {
-  quote: string;
-  name: string;
-  position: string;
-  avatar: string;
-  delay: number;
-}
+const avatars = [
+	'https://ui-avatars.com/api/?name=Вадим+Некрасов&background=934a3a&color=fff&rounded=true&size=64',
+	'https://ui-avatars.com/api/?name=Наталья+и+Алексей&background=934a3a&color=fff&rounded=true&size=64',
+	'https://ui-avatars.com/api/?name=Анастасия+Михайлова&background=934a3a&color=fff&rounded=true&size=64'
+]
 
-const Testimonial = ({ quote, name, position, avatar, delay }: TestimonialProps) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay }}
-      viewport={{ once: true }}
-      className="w-full md:w-1/3 px-4 mb-8 md:mb-0"
-    >
-      <Card className="testimonial-card h-full flex flex-col">
-        <div className="flex-grow mb-4">
-          <p className="italic text-lg">{quote}</p>
-        </div>
-        <div className="flex items-center mt-4">
-          <div className="relative h-12 w-12 mr-4">
-            <Image
-              src={avatar}
-              alt={name}
-              fill
-              className="rounded-full"
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
-          <div>
-            <h5 className="font-bold text-base m-0">{name}</h5>
-            <p className="text-gray-500 text-sm">{position}</p>
-          </div>
-        </div>
-      </Card>
-    </motion.div>
-  );
-};
+const starCount = 5
+
+const testimonials = [
+	{
+		name: 'Вадим Некрасов',
+		subtitle: 'готовит для себя',
+		text: 'Я теперь супы ем! Вместо макарон и яичницы)) Лук нарезали, бульон сварили, говядину потушили. Где вы были раньше?',
+		tag: 'Быстро и удобно'
+	},
+	{
+		name: 'Наталья и Алексей',
+		subtitle: 'готовят вдвоём',
+		text: 'Эти соусы маринара, тоннато, чипсы из шалфея... «Что-то на ресторанном», а у нас теперь такое дома каждый день!',
+		tag: 'Вкусно, как в ресторане'
+	},
+	{
+		name: 'Анастасия Михайлова',
+		subtitle: 'готовит на всю семью',
+		text: 'Просто отключаешь голову, открываешь холодильник, берёшь заветный пакетик, 15 минут и — все сыты и счастливы!',
+		tag: 'Помогает готовить'
+	}
+]
 
 const TestimonialsSection = () => {
-  return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Отзывы клиентов
-          </h2>
-          <p className="text-lg mb-8 max-w-3xl mx-auto">
-            Послушайте наших довольных клиентов о их опыте с нашим сервисом.
-          </p>
-        </motion.div>
+	return (
+		<section className='py-16 bg-gray-200'>
+			<div className='container mx-auto px-4 max-w-7xl'>
+				<h2 className='text-3xl md:text-4xl font-bold mb-12 max-w-md mx-auto text-center'>
+					А ещё лучше про нас расскажут отзывы наших клиентов
+				</h2>
 
-        <div className="flex flex-wrap -mx-4">
-          <Testimonial
-            quote="Я был приятно удивлен, как просто и быстро это работает. Теперь каждую неделю получаю свежие продукты и блюда получаются восхитительно!"
-            name="Иван Петров"
-            position="Клиент Есть что поесть"
-            avatar="https://ext.same-assets.com/2551999732/3521036518.webp"
-            delay={0}
-          />
+				<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+					{testimonials.map(({ name, subtitle, text, tag }, idx) => (
+						<Card
+							key={idx}
+							className='rounded-xl shadow-md p-6 bg-white'
+							bodyStyle={{ padding: 0 }}
+							hoverable
+						>
+							<div className='p-6 flex flex-col h-full'>
+								<div className='flex items-center mb-4'>
+									<img
+										src={avatars[idx]}
+										alt={`${name} avatar`}
+										className='w-12 h-12 rounded-full object-cover mr-4 border border-gray-300'
+									/>
+									<div>
+										<div className='font-semibold text-lg'>
+											{name}
+										</div>
+										<div className='text-gray-500 text-sm'>
+											{subtitle}
+										</div>
+										<div className='flex mt-1 text-yellow-400'>
+											{[...Array(starCount)].map((_, i) => (
+												<StarFilled key={i} />
+											))}
+										</div>
+									</div>
+								</div>
+								<p className='text-gray-700 mb-6 whitespace-pre-line flex-grow'>
+									{text}
+								</p>
+								<Link href='#order' legacyBehavior>
+									<Button
+										type='default'
+										shape='round'
+										size='middle'
+										className='cursor-default select-none px-6'
+										disabled
+										onClick={(e) => e.preventDefault()}
+									>
+										{tag}
+									</Button>
+								</Link>
+							</div>
+						</Card>
+					))}
+				</div>
+			</div>
+		</section>
+	)
+}
 
-          <Testimonial
-            quote="Сервис Есть что поесть значительно упростил мой процесс приготовления пищи. Я рекомендую их всем!"
-            name="Мария Смирнова"
-            position="Клиент Есть что поесть"
-            avatar="https://ext.same-assets.com/204474362/3640097325.webp"
-            delay={0.2}
-          />
-
-          <Testimonial
-            quote="Я поражаюсь тому, что качественные продукты можно так просто найти. Вы делаете то что делаете. Спасибо, Есть что поесть!"
-            name="Алексей Иванов"
-            position="Клиент Есть что поесть"
-            avatar="https://ext.same-assets.com/2922285052/627212711.webp"
-            delay={0.4}
-          />
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default TestimonialsSection;
+export default TestimonialsSection
