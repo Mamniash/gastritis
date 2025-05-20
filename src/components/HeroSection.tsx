@@ -1,22 +1,17 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import SubscriptionForm from '@/components/SubscriptionForm'
+import OrderModal from './OrderModal'
 
 const HeroSection = () => {
-	const handleSuccess = (email: string) => {
-		console.log(`Успешная подписка! Почта: ${email}`)
-	}
-
-	const handleError = (message: string) => {
-		console.log(`Ошибка: ${message}`)
-	}
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	return (
-		<section className='relative overflow-hidden scroll-mt-28' id='head'>
-			<div className='container mx-auto px-4 py-12 md:py-16 flex flex-col md:flex-row items-center'>
+		<section className='relative overflow-hidden scroll-mt-28 ' id='head'>
+			<div className='container mx-auto px-4 pt-12 pb-4 md:py-16 flex flex-col md:flex-row items-center'>
 				<motion.div
 					initial={{ opacity: 0, x: -50 }}
 					animate={{ opacity: 1, x: 0 }}
@@ -50,9 +45,35 @@ const HeroSection = () => {
 						быстрое облегчение симптомов гастрита.
 					</p>
 
-					<SubscriptionForm
-						onSuccess={handleSuccess}
-						onError={handleError}
+					{/* Кнопка "Начать" */}
+					<motion.div
+						initial={{ opacity: 0, scale: 0.95 }}
+						whileInView={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.6 }}
+						className='flex justify-center mb-6'
+					>
+						<motion.button
+							onClick={() => setIsModalOpen(true)}
+							className='w-full max-w-sm relative bg-[#934a3a] hover:bg-[#b95c4d] text-white font-semibold px-4 py-3 rounded-full text-base shadow-md'
+							whileHover={{ scale: 1.02 }}
+							whileTap={{ scale: 0.98 }}
+							animate={{
+								scale: [1, 1.03, 1],
+								opacity: [1, 0.95, 1]
+							}}
+							transition={{
+								duration: 2,
+								repeat: Infinity,
+								ease: 'easeInOut'
+							}}
+						>
+							Получить меню
+						</motion.button>
+					</motion.div>
+
+					<OrderModal
+						open={isModalOpen}
+						onClose={() => setIsModalOpen(false)}
 					/>
 				</motion.div>
 			</div>

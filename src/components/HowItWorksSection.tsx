@@ -45,35 +45,35 @@ const HowItWorksSection = () => {
 	]
 
 	return (
-		<section className='py-16 bg-gray-50'>
+		<section className='pb-16 pt-6 bg-gray-50'>
 			<div className='container mx-auto px-4'>
-				<motion.div className='text-center mb-12'>
+				<motion.div className='text-center mb-8'>
 					<h2 className='text-3xl md:text-4xl font-bold mb-2'>
 						Как работает наш сервис
 					</h2>
 				</motion.div>
 
 				<div ref={sliderRef} className='keen-slider'>
-					{steps.map(({ title, description, imageSrc, imageAlt }, idx) => (
+					{steps.map((step, index) => (
 						<ProcessStep
-							key={idx}
-							title={title}
-							description={description}
-							imageSrc={imageSrc}
-							imageAlt={imageAlt}
-							delay={idx * 0.2}
+							key={index}
+							title={step.title}
+							description={step.description}
+							imageSrc={step.imageSrc}
+							imageAlt={step.imageAlt}
+							delay={0.1 * index}
 						/>
 					))}
 				</div>
 
 				<div className='flex justify-center mt-8'>
-					{[...Array(3)].map((_, index) => (
+					{steps.map((_, index) => (
 						<button
 							key={index}
-							className={`w-6 h-6 rounded-full mx-3 transition-colors duration-300 ${
-								currentSlide === index ? 'bg-[#934a3a]' : 'bg-[#ddd]'
+							className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full mx-2 transition-colors duration-300 ${
+								currentSlide === index ? 'bg-[#934a3a]' : 'bg-[#ccc]'
 							}`}
-							onClick={() => slider?.current?.moveToIdx(index)}
+							onClick={() => slider.current?.moveToIdx(index)}
 						/>
 					))}
 				</div>
