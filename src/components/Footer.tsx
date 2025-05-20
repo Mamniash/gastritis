@@ -26,7 +26,7 @@ const Footer = () => {
 							Есть что поесть
 						</Link>
 						<p className='text-sm text-gray-400 mt-2 max-w-xs'>
-							Рацион, план питания и доставка —
+							Меню, план питания и доставка —
 							всё&nbsp;в&nbsp;одном&nbsp;месте.
 						</p>
 					</div>

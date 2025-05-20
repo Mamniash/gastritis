@@ -25,11 +25,11 @@ const OrderModal: React.FC<OrderModalProps> = ({ open, onClose }) => {
 		>
 			<div className='text-center p-4'>
 				<Title level={4}>
-					Получите идеальный рацион по&nbsp;лучшей&nbsp;цене!
+					Получите идеальный меню по&nbsp;лучшей&nbsp;цене!
 				</Title>
 				<Paragraph>
-					Оставьте номер телефона — мы подберем для вас персональный рацион
-					и отправим в&nbsp;течение&nbsp;10&nbsp;секунд.
+					Оставьте номер телефона — мы подберем для вас персональное меню и
+					отправим в&nbsp;течение&nbsp;10&nbsp;секунд.
 				</Paragraph>
 
 				<SubscriptionForm />

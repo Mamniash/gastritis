@@ -231,7 +231,7 @@ const AdvantageModal: React.FC<AdvantageModalProps> = ({
 						</div>
 						<Paragraph className='text-sm'>
 							Баланс нутриентов — это основа вашего здоровья. Система
-							рассчитывает рацион по ключевым показателям: белки, жиры,
+							рассчитывает меню по ключевым показателям: белки, жиры,
 							витамины&nbsp;и&nbsp;др.
 						</Paragraph>
 					</>
@@ -261,7 +261,7 @@ const AdvantageModal: React.FC<AdvantageModalProps> = ({
 						size='large'
 						onClick={() => setOrderOpen(true)}
 					>
-						Пробовать бесплатно
+						Получить меню
 					</Button>
 				</div>
 			</Modal>
